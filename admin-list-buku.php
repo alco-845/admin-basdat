@@ -1,6 +1,6 @@
 <?php
 
-require 'functions.php';
+require 'config.php';
 $data_buku = query("SELECT * FROM tblbuku");
 ?>
 

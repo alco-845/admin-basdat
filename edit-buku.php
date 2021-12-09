@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'config.php';
 
 //ambil id
 $id = $_GET["id"];

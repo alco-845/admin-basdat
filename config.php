@@ -12,7 +12,8 @@ if (!$conn) {
 }
  
 
-////////////////////////FUNCTION TABEL BUKU/////////////////////////////////
+//=============================FUNCTION TABEL BUKU==================================
+
 // proses mengambil tiap isi di database
 function query($query) {
     global $koneksi;
@@ -57,7 +58,6 @@ function tambah($data) {
     //mengembalikan nilai apakah ada perubahan atau tidak
     return mysqli_affected_rows($koneksi);
 }
-
 
 
 function upload() {
@@ -110,7 +110,6 @@ function upload() {
 }
 
 
-
 function ubah($data) {
     global $koneksi;
     //var_dump($data);die;
@@ -160,5 +159,6 @@ function hapus($id) {
     return mysqli_affected_rows($koneksi);
 }
 
-////////////////////////FUNCTION TABEL BUKU/////////////////////////////////
+//==========================FUNCTION TABEL BUKU============================
+
 ?>

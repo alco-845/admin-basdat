@@ -1,7 +1,7 @@
 <?php
 
 
-require 'functions.php';
+require 'config.php';
 
 $id = $_GET["id"];
 // var_dump($id);die;
