@@ -127,9 +127,9 @@ $data_buku = query("SELECT * FROM tblbuku");
                         <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
                         </li> -->
                     </ul>
-                    <div class="text-center m-t-30">
+                    <!-- <div class="text-center m-t-30">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-warning hidden-md-down">Download Now</a>
-                    </div>
+                    </div> -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
