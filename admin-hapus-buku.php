@@ -9,14 +9,14 @@ if (hapus($id) > 0) {
     echo "
         <script>
             alert('data berhasil di hapus!');
-            document.location.href = 'table-basic.php';
+            document.location.href = 'admin-list-buku.php';
         </script>
         ";
 } else{
     echo "
         <script>
             alert('data gagal dihapus!!!');
-            document.location.href = 'table-basic.php';
+            document.location.href = 'admin-list-buku.php';
         </script>
         ";
 }

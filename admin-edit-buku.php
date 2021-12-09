@@ -14,13 +14,13 @@ if (isset($_POST["submit"])) {
     if (ubah($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah')
-                document.location.href = 'table-basic.php';
+                document.location.href = 'admin-list-buku.php';
                 </script>
                 ";
     } else {
         echo "<script>
                     alert('Data gagal dimasukkan')
-                    document.location.href = 'table-basic.php';
+                    document.location.href = 'admin-list-buku.php';
               </script>
             ";
     }
@@ -116,7 +116,7 @@ if (isset($_POST["submit"])) {
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Admin</a>
                         </li>
                     </ul>
                 </div>
@@ -138,9 +138,9 @@ if (isset($_POST["submit"])) {
                         </li>
                         <li> <a class="waves-effect waves-dark" href="table-basic.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Buku</span></a>
                     </ul>
-                    <div class="text-center m-t-30">
+                    <!-- <div class="text-center m-t-30">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-warning hidden-md-down">Download Now</a>
-                    </div>
+                    </div> -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
