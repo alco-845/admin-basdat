@@ -167,7 +167,7 @@ $data_buku = query("SELECT * FROM tblbuku");
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
                     </div> -->
                     <div class="col-md-7 col-4 align-self-center">
-                        <a href="tambah-buku.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah Buku</a>
+                        <a href="admin-tambah-buku.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah Buku</a>
                 </div>
                 </div>
 
@@ -209,8 +209,8 @@ $data_buku = query("SELECT * FROM tblbuku");
                                                 <td><?= $row["penerbit"]?></td>
                                                 <td><?= $row["jumlah_buku"]?></td>
                                                 <td><img src="foto/<?= $row["sampul"]?>" width="100"></td>
-                                                <td><a href="edit-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-table-edit"></i></a>
-                                                <a href="hapus-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-delete"></i></a>
+                                                <td><a href="admin-edit-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-table-edit"></i></a>
+                                                <a href="admin-hapus-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-delete"></i></a>
                                                 
                                                 </td>
                                             </tr>
