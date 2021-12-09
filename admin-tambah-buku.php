@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'config.php';
 $koneksi = mysqli_connect("localhost", "root", "", "perpus");
 
 if (isset($_POST["submit"])) {

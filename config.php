@@ -12,13 +12,14 @@ if (!$conn) {
 }
  
 
-////////////////////////FUNCTION TABEL BUKU/////////////////////////////////
+//=============================FUNCTION TABEL BUKU==================================
+
 // proses mengambil tiap isi di database
 function query($query) {
-    global $koneksi;
+    global $conn;
 
     // lemari
-    $result = mysqli_query($koneksi, $query);
+    $result = mysqli_query($conn, $query);
     //menyiapkan data kosong
     $rows = [];
 
@@ -32,7 +33,7 @@ function query($query) {
 
 function tambah($data) {
     
-    global $koneksi;
+    global $conn;
     // ambil data tiap elemen
     $judul = $data["judul"];
     $pengarang = $data["pengarang"];
@@ -53,11 +54,10 @@ function tambah($data) {
             VALUES
             ('', '$judul', '$pengarang', '$tahun', '$penerbit', '$jumlah_buku', '$sampul')
         ";
-    mysqli_query($koneksi, $query);
+    mysqli_query($conn, $query);
     //mengembalikan nilai apakah ada perubahan atau tidak
-    return mysqli_affected_rows($koneksi);
+    return mysqli_affected_rows($conn);
 }
-
 
 
 function upload() {
@@ -110,9 +110,8 @@ function upload() {
 }
 
 
-
 function ubah($data) {
-    global $koneksi;
+    global $conn;
     //var_dump($data);die;
     // ambil data tiap elemen
     $id = $data["idbuku"];
@@ -145,20 +144,21 @@ function ubah($data) {
         ";
     // var_dump($query);die;
     // proses ke database
-    mysqli_query($koneksi, $query);
+    mysqli_query($conn, $query);
     //mengembalikan nilai apakah ada perubahan atau tidak
-    return mysqli_affected_rows($koneksi);
+    return mysqli_affected_rows($conn);
 
 }
 
 
 function hapus($id) {
-    global $koneksi;
-    mysqli_query($koneksi, "DELETE FROM tblbuku WHERE idbuku=$id");
+    global $conn;
+    mysqli_query($conn, "DELETE FROM tblbuku WHERE idbuku=$id");
     //mengembalikan nilai apakah ada perubahan atau tidak
     //var_dump(mysqli_affected_rows($koneksi));die;
-    return mysqli_affected_rows($koneksi);
+    return mysqli_affected_rows($conn);
 }
 
-////////////////////////FUNCTION TABEL BUKU/////////////////////////////////
+//==========================FUNCTION TABEL BUKU============================
+
 ?>
