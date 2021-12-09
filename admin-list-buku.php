@@ -17,7 +17,7 @@ $data_buku = query("SELECT * FROM tblbuku");
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
+    <title>Admin | Buku</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -113,7 +113,7 @@ $data_buku = query("SELECT * FROM tblbuku");
                     <ul id="sidebarnav">
                         <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="table-basic.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Buku</span></a>
                         <!-- <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Basic Table</span></a>
@@ -234,7 +234,7 @@ $data_buku = query("SELECT * FROM tblbuku");
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                © 2021 Perpustakaan Online
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

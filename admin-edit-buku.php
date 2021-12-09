@@ -41,7 +41,7 @@ if (isset($_POST["submit"])) {
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
+    <title>Admin | Buku</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -136,7 +136,7 @@ if (isset($_POST["submit"])) {
                     <ul id="sidebarnav">
                         <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="table-basic.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Buku</span></a>
                     </ul>
                     <!-- <div class="text-center m-t-30">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-warning hidden-md-down">Download Now</a>
@@ -270,7 +270,7 @@ if (isset($_POST["submit"])) {
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                © 2021 Perpustakaan Online
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
