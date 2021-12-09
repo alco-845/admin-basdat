@@ -14,13 +14,13 @@ if (isset($_POST["submit"])) {
     if (ubah($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah')
-                document.location.href = 'table-basic.php';
+                document.location.href = 'admin-list-buku.php';
                 </script>
                 ";
     } else {
         echo "<script>
                     alert('Data gagal dimasukkan')
-                    document.location.href = 'table-basic.php';
+                    document.location.href = 'admin-list-buku.php';
               </script>
             ";
     }
