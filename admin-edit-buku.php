@@ -86,9 +86,9 @@ if (isset($_POST["submit"])) {
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                         
-                         <!-- Light Logo text -->    
-                         <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                        
+                        <!-- Light Logo text -->    
+                        <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->

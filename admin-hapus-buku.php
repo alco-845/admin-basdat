@@ -1,6 +1,5 @@
 <?php
 
-
 require 'config.php';
 
 $id = $_GET["id"];

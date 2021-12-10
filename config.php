@@ -1,16 +1,16 @@
 <?php 
- 
+
 $server = "localhost";
 $user = "root";
 $pass = "";
 $database = "perpus";
- 
+
 $conn = mysqli_connect($server, $user, $pass, $database);
- 
+
 if (!$conn) {
     die("<script>alert('Gagal tersambung dengan database.')</script>");
 }
- 
+
 
 //=============================FUNCTION TABEL BUKU==================================
 
@@ -30,7 +30,6 @@ function query($query) {
     return $rows;
 }
 
-
 function tambah($data) {
     
     global $conn;
@@ -41,8 +40,6 @@ function tambah($data) {
     $penerbit = $data["penerbit"];
     $jumlah_buku = $data["jumlah_buku"];
     
-
-
     // upload gambar
     $sampul = upload();
     if ( !$sampul) {
@@ -58,7 +55,6 @@ function tambah($data) {
     //mengembalikan nilai apakah ada perubahan atau tidak
     return mysqli_affected_rows($conn);
 }
-
 
 function upload() {
     // ambil isi dari $_FILES masukkan ke dalam variabel
@@ -76,7 +72,6 @@ function upload() {
     }
 
     // yang di upload gambar / tidak
-
     $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
     // mengambil ekstensi file yang diupload dari 1 string gambar 
     // menggunakan fungsi explode=> memecah 1 string menjadi array
@@ -103,12 +98,10 @@ function upload() {
     return false;
     }
 
-
     // lolos pengecekan 
     move_uploaded_file($tmpName, 'foto/'.$namaFile);
     return $namaFile;
 }
-
 
 function ubah($data) {
     global $conn;
@@ -122,7 +115,6 @@ function ubah($data) {
     $jumlah_buku = $data["jumlah_buku"];
     $sampulLama = $data["sampulLama"];
     
-
     // cek apakah user memilih gambar baru apa tidak
     if ( $_FILES['sampul']['error'] === 4 ) {
         $sampul = $sampulLama;
@@ -130,7 +122,6 @@ function ubah($data) {
     } else {
         $sampul = upload();
     }
-
 
     //query update data
     $query = "UPDATE tblbuku SET
@@ -150,7 +141,6 @@ function ubah($data) {
 
 }
 
-
 function hapus($id) {
     global $conn;
     mysqli_query($conn, "DELETE FROM tblbuku WHERE idbuku=$id");
@@ -158,7 +148,13 @@ function hapus($id) {
     //var_dump(mysqli_affected_rows($koneksi));die;
     return mysqli_affected_rows($conn);
 }
-
 //==========================FUNCTION TABEL BUKU============================
+
+
+//==========================FUNCTION TABEL USER============================
+
+
+
+//==========================FUNCTION TABEL USER============================
 
 ?>
