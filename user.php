@@ -16,7 +16,7 @@ $data_user = query("SELECT * FROM tbluser");
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Admin | Buku</title>
+    <title>Admin | Data user</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -167,7 +167,6 @@ $data_user = query("SELECT * FROM tbluser");
                         <a href="user-create.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah User</a>
                 </div>
                 </div>
-
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
