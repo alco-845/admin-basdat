@@ -203,7 +203,7 @@ $data_user = query("SELECT * FROM tbluser");
                                                 <td><?= $row["nama"]?></td>
                                                 <td><?= $row["alamat"]?></td>
                                                 <td><?= $row["notelp"]?></td>
-                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-table-edit"></i></a>
+                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-account-edit"></i></a>
                                                 <a href="user-delete.php?id=<?= $row['iduser']?>"><i class="mdi mdi-delete"></i></a>
                                                 
                                                 </td>
