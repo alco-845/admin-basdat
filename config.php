@@ -175,7 +175,7 @@ function tambah_user($data) {
 
 function ubah_user($data) {
     global $conn;
-    //var_dump($data);die;
+    //var_dump($data["iduser"]);die;
     // ambil data tiap elemen
     $id = $data["iduser"];
     $username = $data["username"];
@@ -190,7 +190,7 @@ function ubah_user($data) {
                 password = '$password',
                 nama = '$nama',
                 alamat = '$alamat',
-                notelp = '$notelp',
+                notelp = '$notelp'
               WHERE iduser = '$id'
         ";
     // var_dump($query);die;
