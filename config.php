@@ -200,6 +200,15 @@ function ubah_user($data) {
     return mysqli_affected_rows($conn);
 }
 
+function hapus_user($id) {
+    global $conn;
+    //hapus user
+    mysqli_query($conn, "DELETE FROM tbluser WHERE iduser=$id");
+    //mengembalikan nilai apakah ada perubahan atau tidak
+    //var_dump(mysqli_affected_rows($koneksi));die;
+    return mysqli_affected_rows($conn);
+}
+
 //==========================FUNCTION TABEL USER============================
 
 ?>
