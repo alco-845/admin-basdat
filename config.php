@@ -144,7 +144,7 @@ function hapus($id) {
     global $conn;
     mysqli_query($conn, "DELETE FROM tblbuku WHERE idbuku=$id");
     //hapus user
-    mysqli_query($conn, "DELETE FROM tbluser WHERE iduser=$id");
+
     //mengembalikan nilai apakah ada perubahan atau tidak
     //var_dump(mysqli_affected_rows($koneksi));die;
     return mysqli_affected_rows($conn);
