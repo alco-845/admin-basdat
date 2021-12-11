@@ -138,12 +138,12 @@ function ubah($data) {
     mysqli_query($conn, $query);
     //mengembalikan nilai apakah ada perubahan atau tidak
     return mysqli_affected_rows($conn);
-
 }
 
 function hapus($id) {
     global $conn;
     mysqli_query($conn, "DELETE FROM tblbuku WHERE idbuku=$id");
+    //hapus user
     mysqli_query($conn, "DELETE FROM tbluser WHERE iduser=$id");
     //mengembalikan nilai apakah ada perubahan atau tidak
     //var_dump(mysqli_affected_rows($koneksi));die;
@@ -154,7 +154,51 @@ function hapus($id) {
 
 //==========================FUNCTION TABEL USER============================
 
+function tambah_user($data) {
+    global $conn;
+    // ambil data tiap elemen
+    $username = $data["username"];
+    $password = $data["password"];
+    $nama = $data["nama"];
+    $alamat = $data["alamat"];
+    $notelp = $data["notelp"];
 
+    //query insert data
+    $query = "INSERT INTO tbluser
+            VALUES
+            ('', '$username', '$password', '$nama', '$alamat', '$notelp')
+        ";
+    mysqli_query($conn, $query);
+    //mengembalikan nilai apakah ada perubahan atau tidak
+    return mysqli_affected_rows($conn);
+}
+
+function ubah_user($data) {
+    global $conn;
+    //var_dump($data);die;
+    // ambil data tiap elemen
+    $id = $data["iduser"];
+    $username = $data["username"];
+    $password = $data["password"];
+    $nama = $data["nama"];
+    $alamat = $data["alamat"];
+    $notelp = $data["notelp"];
+    
+    //query update data
+    $query = "UPDATE tbluser SET
+                username = '$username',
+                password = '$password',
+                nama = '$nama',
+                alamat = '$alamat',
+                notelp = '$notelp',
+              WHERE iduser = '$id'
+        ";
+    // var_dump($query);die;
+    // proses ke database
+    mysqli_query($conn, $query);
+    //mengembalikan nilai apakah ada perubahan atau tidak
+    return mysqli_affected_rows($conn);
+}
 
 //==========================FUNCTION TABEL USER============================
 

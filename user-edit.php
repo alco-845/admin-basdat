@@ -3,31 +3,28 @@ require 'config.php';
 
 //ambil id
 $id = $_GET["id"];
-$data_buku = query("SELECT * FROM tblbuku WHERE idbuku=$id");
+$data_user = query("SELECT * FROM tbluser WHERE iduser=$id");
 // var_dump($data_buku);die;
 
 $koneksi = mysqli_connect("localhost", "root", "", "perpus");
 
 if (isset($_POST["submit"])) {
-
     //cek apakah data berhasil ditambahkan
-    if (ubah($_POST) > 0) {
+    if (ubah_user($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah')
-                document.location.href = 'admin-list-buku.php';
-                </script>
-                ";
+                document.location.href = 'user.php';
+              </script>
+            ";
     } else {
         echo "<script>
-                    alert('Data gagal dimasukkan')
-                    document.location.href = 'admin-list-buku.php';
+                    alert('Data gagal diubah')
+                    document.location.href = 'user.php';
               </script>
             ";
     }
-
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -219,48 +216,40 @@ if (isset($_POST["submit"])) {
                             <div class="card-block">
                                 <form method="post" action="" enctype="multipart/form-data" class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label class="col-md-12">Judul Buku</label>
+                                        <label class="col-md-12">Username</label>
                                         <div class="col-md-12">
-                                        <input type="hidden" name="idbuku" value="<?= $data_buku[0]['idbuku']?>">
-                                        <input type="hidden" name="sampulLama" value="<?= $data_buku[0]['sampul']?>">
-                                            <input type="text" name="judul" placeholder="Cinta Surga" value="<?=  $data_buku['0']['judul']?>" class="form-control form-control-line">
+                                        <input type="hidden" name="iduser" value="<?= $data_user[0]['iduser']?>">  
+                                            <input type="text" name="username" placeholder="ex. jokowi123" value="<?=  $data_user['0']['username']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Pengarang</label>
+                                        <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="pengarang" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['pengarang']?>" class="form-control form-control-line">
+                                            <input type="password" name="password" placeholder="ex. jkw2periode" value="<?=  $data_user['0']['password']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Tahun Terbit</label>
+                                        <label class="col-md-12">Nama Lengkap</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="tahun" placeholder="2015" value="<?=  $data_buku['0']['tahun_terbit']?>" class="form-control form-control-line">
+                                            <input type="text" name="nama" placeholder="ex. Joko Widodo" value="<?=  $data_user['0']['nama']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Penerbit</label>
+                                        <label class="col-md-12">Alamat</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="penerbit" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['penerbit']?>"class="form-control form-control-line">
+                                            <input type="text" name="alamat" placeholder="ex. Bangkalan" value="<?=  $data_user['0']['alamat']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Jumlah Buku</label>
+                                        <label class="col-md-12">Nomor Telepon</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="jumlah_buku" placeholder="10"  value="<?=  $data_buku['0']['jumlah_buku']?>"class="form-control form-control-line">
+                                            <input type="number" name="notelp" placeholder="ex. 081234567890" value="<?=  $data_user['0']['notelp']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Sampul</label>
-                                        <div class="col-md-12">
-                                            <input type="file" name="sampul" value="<?=  $data_buku['0']['sampul']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-        
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">UPDATE DATA</button>
+                                            <button name="submit" class="btn btn-success">UPDATE</button>
                                         </div>
                                     </div>
                                 </form>

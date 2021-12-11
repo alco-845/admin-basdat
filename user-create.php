@@ -5,23 +5,21 @@ $koneksi = mysqli_connect("localhost", "root", "", "perpus");
 if (isset($_POST["submit"])) {
 
     //cek apakah data berhasil ditambahkan
-    if (tambah($_POST) > 0) {
+    if (tambah_user($_POST) > 0) {
         echo "<script>
-                alert('Data berhasil dimasukkan')
-                document.location.href = 'admin-list-buku.php';
-                </script>
-                ";
+                alert('Data berhasil ditambahkan')
+                document.location.href = 'user.php';
+              </script>
+            ";
     } else {
         echo "<script>
-                    alert('Data gagal dimasukkan')
-                    document.location.href = 'admin-list-buku.php';
+                alert('Data gagal ditambahkan')
+                document.location.href = 'user.php';
               </script>
             ";
     }
-
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -219,6 +217,12 @@ if (isset($_POST["submit"])) {
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-12">Password</label>
+                                        <div class="col-md-12">
+                                            <input type="password" name="Password" placeholder="ex. jkw2periode" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">Nama Lengkap</label>
                                         <div class="col-md-12">
                                             <input type="text" name="nama" placeholder="ex. Joko Widodo" class="form-control form-control-line">
@@ -233,9 +237,8 @@ if (isset($_POST["submit"])) {
                                     <div class="form-group">
                                         <label class="col-md-12">Nomor Telepon</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="notelp" placeholder="ex. 081234567890" class="form-control form-control-line">
+                                            <input type="number" name="notelp" placeholder="ex. 081234567890" class="form-control form-control-line">
                                         </div>
-                                    </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
