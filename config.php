@@ -211,7 +211,7 @@ function hapus_user($id) {
 
 //==========================FUNCTION TABEL USER============================
 
-//==========================FUNCTION TABEL BUKU============================
+//==========================FUNCTION TABEL ADMIN============================
 if($_GET['act']== 'tambahuser'){
     $nama = $_POST['nama'];
     $username = $_POST['username'];
@@ -267,4 +267,7 @@ elseif($_GET['act']=='updateuser'){
       echo "ERROR, data gagal diupdate". mysqli_error($conn);
   }
 }
+
+//==========================FUNCTION TABEL ADMIN============================
+
 ?>
