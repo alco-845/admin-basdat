@@ -1,7 +1,7 @@
 <?php
 
 require 'config.php';
-$data_buku = query("SELECT * FROM tblbuku");
+$data_user = query("SELECT * FROM tbluser");
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ $data_buku = query("SELECT * FROM tblbuku");
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Admin | Buku</title>
+    <title>Admin | Data user</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -55,7 +55,7 @@ $data_buku = query("SELECT * FROM tblbuku");
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-
+                            
                             <!-- Light Logo icon -->
                             <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
@@ -154,20 +154,19 @@ $data_buku = query("SELECT * FROM tblbuku");
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tabel Buku</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Tabel User</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Table Buku</li>
+                            <li class="breadcrumb-item active">Tabel User</li>
                         </ol>
                     </div>
                     <!-- <div class="col-md-7 col-4 align-self-center">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
                     </div> -->
                     <div class="col-md-7 col-4 align-self-center">
-                        <a href="admin-tambah-buku.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah Buku</a>
+                        <a href="user-create.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah User</a>
                 </div>
                 </div>
-
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -179,35 +178,33 @@ $data_buku = query("SELECT * FROM tblbuku");
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">List Buku</h4>
+                                <h4 class="card-title">Data User</h4>
                                 <!-- <h6 class="card-subtitle">Add class <code>.table</code></h6> -->
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Judul Buku</th>
-                                                <th>Pengarang</th>
-                                                <th>Tahun Terbit</th>
-                                                <th>Penerbit</th>
-                                                <th>Jumlah Buku</th>
-                                                <th>Gambar</th>
+                                                <th>ID User</th>
+                                                <th>Username</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Alamat</th>
+                                                <th>No. Telp</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <?php $angka = 1; ?>
-                                        <?php foreach($data_buku as $row): ?>
+                                        <?php foreach($data_user as $row): ?>
                                         <tbody>
                                             <tr>
                                                 <td><?= $angka?></td>
-                                                <td><?= $row["judul"]?></td>
-                                                <td><?= $row["pengarang"]?></td>
-                                                <td><?= $row["tahun_terbit"]?></td>
-                                                <td><?= $row["penerbit"]?></td>
-                                                <td><?= $row["jumlah_buku"]?></td>
-                                                <td><img src="foto/<?= $row["sampul"]?>" width="100"></td>
-                                                <td><a href="admin-edit-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-table-edit"></i></a>
-                                                <a href="admin-hapus-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-delete"></i></a>
+                                                <td><?= $row["iduser"]?></td>
+                                                <td><?= $row["username"]?></td>
+                                                <td><?= $row["nama"]?></td>
+                                                <td><?= $row["alamat"]?></td>
+                                                <td><?= $row["notelp"]?></td>
+                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-table-edit"></i></a>
+                                                <a href="user-delete.php?id=<?= $row['iduser']?>"><i class="mdi mdi-delete"></i></a>
                                                 
                                                 </td>
                                             </tr>
