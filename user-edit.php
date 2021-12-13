@@ -155,9 +155,9 @@ if (isset($_POST["submit"])) {
             <!-- End Sidebar scroll-->
             <!-- Bottom points-->
             <div class="sidebar-footer">
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
             <!-- End Bottom points-->
         </aside>
         <!-- ============================================================== -->
@@ -219,37 +219,37 @@ if (isset($_POST["submit"])) {
                                         <label class="col-md-12">Username</label>
                                         <div class="col-md-12">
                                         <input type="hidden" name="iduser" value="<?= $data_user[0]['iduser']?>">  
-                                            <input type="text" name="username" placeholder="Masukkan Username" value="<?=  $data_user['0']['username']?>" class="form-control form-control-line">
+                                            <input type="text" name="username" placeholder="ex. jokowi123" value="<?=  $data_user['0']['username']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
-                                            <input type="password" name="password" placeholder="Masukkan Password" value="<?=  $data_user['0']['password']?>" class="form-control form-control-line">
+                                            <input type="password" name="password" placeholder="ex. jkw2periode" value="<?=  $data_user['0']['password']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Nama Lengkap</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="nama" placeholder="Masukkan Nama" value="<?=  $data_user['0']['nama']?>" class="form-control form-control-line">
+                                            <input type="text" name="nama" placeholder="ex. Joko Widodo" value="<?=  $data_user['0']['nama']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Alamat</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="alamat" placeholder="Masukkan Alamat" value="<?=  $data_user['0']['alamat']?>" class="form-control form-control-line">
+                                            <input type="text" name="alamat" placeholder="ex. Bangkalan" value="<?=  $data_user['0']['alamat']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Nomor Telepon</label>
                                         <div class="col-md-12">
-                                            <input type="number" name="notelp" placeholder="Masukkan Telepon" value="<?=  $data_user['0']['notelp']?>" class="form-control form-control-line">
+                                            <input type="number" name="notelp" placeholder="ex. 081234567890" value="<?=  $data_user['0']['notelp']?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">Ubah Data</button>
+                                            <button name="submit" class="btn btn-success">UPDATE</button>
                                         </div>
                                     </div>
                                 </form>

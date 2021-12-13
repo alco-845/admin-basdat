@@ -135,9 +135,9 @@ $data_user = query("SELECT * FROM tbluser");
             <!-- End Sidebar scroll-->
             <!-- Bottom points-->
             <div class="sidebar-footer">
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
             <!-- End Bottom points-->
         </aside>
         <!-- ============================================================== -->
@@ -205,9 +205,9 @@ $data_user = query("SELECT * FROM tbluser");
                                                 <td><?= $row["nama"]?></td>
                                                 <td><?= $row["alamat"]?></td>
                                                 <td><?= $row["notelp"]?></td>
-                                                <td>
-                                                    <a href="user-edit.php?id=<?= $row['iduser']?>" class="btn btn-info btn-flat btn-xs"><i class="mdi mdi-account-edit"></i></a>
-                                                    <a href="user-delete.php?id=<?= $row['iduser']?>" class="btn btn-danger btn-flat btn-xs"><i class="mdi mdi-delete"></i></a>
+                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-account-edit"></i></a>
+                                                <a href="user-delete.php?id=<?= $row['iduser']?>"><i class="mdi mdi-delete"></i></a>
+                                                
                                                 </td>
                                             </tr>
                                         </tbody>
