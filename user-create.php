@@ -150,9 +150,9 @@ if (isset($_POST["submit"])) {
             <!-- End Sidebar scroll-->
             <!-- Bottom points-->
             <div class="sidebar-footer">
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="#" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
             <!-- End Bottom points-->
         </aside>
         <!-- ============================================================== -->
@@ -213,36 +213,36 @@ if (isset($_POST["submit"])) {
                                     <div class="form-group">
                                         <label class="col-md-12">Username</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="username" placeholder="ex. jokowi123" class="form-control form-control-line">
+                                            <input type="text" name="username" placeholder="Masukkan Username" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
-                                            <input type="password" name="password" placeholder="ex. jkw2periode" class="form-control form-control-line">
+                                            <input type="password" name="password" placeholder="Masukkan Password" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Nama Lengkap</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="nama" placeholder="ex. Joko Widodo" class="form-control form-control-line">
+                                            <input type="text" name="nama" placeholder="Masukkan Nama" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Alamat</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="alamat" placeholder="ex. Bangkalan" class="form-control form-control-line">
+                                            <input type="text" name="alamat" placeholder="Masukkan Alamat" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Nomor Telepon</label>
                                         <div class="col-md-12">
-                                            <input type="number" name="notelp" placeholder="ex. 081234567890" class="form-control form-control-line">
+                                            <input type="number" name="notelp" placeholder="Masukkan Telepon" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">Tambah User</button>
+                                            <button name="submit" class="btn btn-success">Tambah Data</button>
                                         </div>
                                     </div>
                                 </form>
