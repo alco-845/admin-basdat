@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2021 at 04:36 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Dec 13, 2021 at 06:41 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,7 +42,8 @@ CREATE TABLE `tbladmin` (
 --
 
 INSERT INTO `tbladmin` (`idadmin`, `username`, `password`, `nama`, `alamat`, `notelp`) VALUES
-(1, 'admin', 'admin123', 'Admin1', 'telang', '085158925522');
+(1, 'admin', 'admin123', 'Admin1', 'telang', '085158925522'),
+(2, 'admin2', '123', 'admin2', 'Bangkalan', '0823213213');
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,9 @@ CREATE TABLE `tblbuku` (
 --
 
 INSERT INTO `tblbuku` (`idbuku`, `judul`, `pengarang`, `tahun_terbit`, `penerbit`, `jumlah_buku`, `sampul`) VALUES
-(123, 'WPU', 'Padhika', '2109', 'Unpas', 10, '1.jpg'),
-(7708, 'WPU', 'Pak Dhika', '2019', 'Unpas', 5, '2.jpg'),
-(7710, 'WPU1', 'Pak Dhika1', 'qwe1', 'Unpas1', 51, '1.jpg');
+(123, 'WPU', 'Padhika', '2109', 'Unpas', 15, '1.jpg'),
+(7708, 'WPU', 'Pak Dhika', '2019', 'Unpas', 10, '2.jpg'),
+(7710, 'WPU1', 'Pak Dhika1', 'qwe1', 'Unpas1', 40, '1.jpg');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblbuku`
@@ -182,13 +183,13 @@ ALTER TABLE `tblbuku`
 -- AUTO_INCREMENT for table `tblitem`
 --
 ALTER TABLE `tblitem`
-  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbltransaksi`
 --
 ALTER TABLE `tbltransaksi`
-  MODIFY `idtransaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
