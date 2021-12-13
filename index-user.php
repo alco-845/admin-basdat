@@ -1,33 +1,14 @@
-<?php
-require 'config.php';
-
-//ambil id
-$id = $_GET["id"];
-$data_buku = query("SELECT * FROM tblbuku WHERE idbuku=$id");
-// var_dump($data_buku);die;
-
-$koneksi = mysqli_connect("localhost", "root", "", "perpus");
-
-if (isset($_POST["submit"])) {
-
-    //cek apakah data berhasil ditambahkan
-    if (ubah($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah')
-                document.location.href = 'admin-list-buku.php';
-                </script>
-                ";
-    } else {
-        echo "<script>
-                    alert('Data gagal dimasukkan')
-                    document.location.href = 'admin-list-buku.php';
-              </script>
-            ";
-    }
-
+<?php 
+ 
+session_start();
+ 
+if(!isset($_SESSION['iduser'])){
+    header("Location: login.php");
 }
-?>
 
+$userName = $_SESSION['namauser'];
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,9 +22,15 @@ if (isset($_POST["submit"])) {
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Admin | Buku</title>
+    <title>Perpustakaan</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
+    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!--This page css - Morris CSS -->
+    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -62,7 +49,8 @@ if (isset($_POST["submit"])) {
     <!-- ============================================================== -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
@@ -80,15 +68,17 @@ if (isset($_POST["submit"])) {
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            
+
                             <!-- Light Logo icon -->
                             <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                        
-                        <!-- Light Logo text -->    
-                        <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+
+                            <!-- Light Logo text -->
+                            <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -105,7 +95,8 @@ if (isset($_POST["submit"])) {
                         <!-- ============================================================== -->
                         <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
                         </li>
                     </ul>
                     <!-- ============================================================== -->
@@ -116,7 +107,7 @@ if (isset($_POST["submit"])) {
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Admin</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" /><?= $userName?></a>
                         </li>
                     </ul>
                 </div>
@@ -134,24 +125,13 @@ if (isset($_POST["submit"])) {
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+                    <li> <a class="waves-effect waves-dark" href="index-user.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="user-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="user.php" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">User</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="admin.php" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Admin</span></a>
-                        </li><!--
-                        <li> <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
-                        </li> -->
+                        <li> <a class="waves-effect waves-dark" href="user-list-pinjam.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Peminjaman</span></a>
+                        </li>                        
                     </ul>
-                    <!-- <div class="text-center m-t-30">
-                        <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-warning hidden-md-down">Download Now</a>
-                    </div> -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -160,7 +140,8 @@ if (isset($_POST["submit"])) {
             <div class="sidebar-footer">
                 <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
                 <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+            </div>
             <!-- End Bottom points-->
         </aside>
         <!-- ============================================================== -->
@@ -179,15 +160,16 @@ if (isset($_POST["submit"])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Buku</h3>
+                        <h3 class="text-themecolor">Dashboard</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Tambah Buku</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
-                    <!-- <div class="col-md-7 col-4 align-self-center">
-                        <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
-                    </div> -->
+                    <div class="col-md-7 col-4 align-self-center">
+                        <form action="" method="POST">
+                            <a href="logout.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Logout</a>
+                    </div>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
@@ -196,80 +178,8 @@ if (isset($_POST["submit"])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-block">
-                                <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">ADMIN</h4>
-                                    <h6 class="card-subtitle">Perpustakaan Umum</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <!-- <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div> -->
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <form method="post" action="" enctype="multipart/form-data" class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Judul Buku</label>
-                                        <div class="col-md-12">
-                                        <input type="hidden" name="idbuku" value="<?= $data_buku[0]['idbuku']?>">
-                                        <input type="hidden" name="sampulLama" value="<?= $data_buku[0]['sampul']?>">
-                                            <input type="text" name="judul" placeholder="Cinta Surga" value="<?=  $data_buku['0']['judul']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Pengarang</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="pengarang" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['pengarang']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Tahun Terbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="tahun" placeholder="2015" value="<?=  $data_buku['0']['tahun_terbit']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Penerbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="penerbit" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['penerbit']?>"class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Jumlah Buku</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="jumlah_buku" placeholder="10"  value="<?=  $data_buku['0']['jumlah_buku']?>"class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Sampul</label>
-                                        <div class="col-md-12">
-                                            <input type="file" name="sampul" value="<?=  $data_buku['0']['sampul']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-        
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">UPDATE DATA</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
+                <div class="row">                    
                 </div>
-                <!-- Row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -280,9 +190,7 @@ if (isset($_POST["submit"])) {
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer">
-                © 2021 Perpustakaan Online
-            </footer>
+            <footer class="footer"> © 2020 Perpustakaan Online </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -311,6 +219,17 @@ if (isset($_POST["submit"])) {
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="assets/plugins/d3/d3.min.js"></script>
+    <script src="assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="js/dashboard1.js"></script>
 </body>
 
 </html>

@@ -1,31 +1,12 @@
 <?php
+
 require 'config.php';
+session_start();
+$iduser = $_SESSION['iduser'];
+$data_user = mysqli_query($conn,"SELECT * FROM tbluser WHERE iduser = $iduser");
+$user = mysqli_fetch_assoc($data_user);
+$data_buku = query("SELECT * FROM tblbuku");
 
-//ambil id
-$id = $_GET["id"];
-$data_buku = query("SELECT * FROM tblbuku WHERE idbuku=$id");
-// var_dump($data_buku);die;
-
-$koneksi = mysqli_connect("localhost", "root", "", "perpus");
-
-if (isset($_POST["submit"])) {
-
-    //cek apakah data berhasil ditambahkan
-    if (ubah($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah')
-                document.location.href = 'admin-list-buku.php';
-                </script>
-                ";
-    } else {
-        echo "<script>
-                    alert('Data gagal dimasukkan')
-                    document.location.href = 'admin-list-buku.php';
-              </script>
-            ";
-    }
-
-}
 ?>
 
 
@@ -45,11 +26,13 @@ if (isset($_POST["submit"])) {
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -57,6 +40,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+    
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -80,15 +64,15 @@ if (isset($_POST["submit"])) {
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            
+                           
                             <!-- Light Logo icon -->
                             <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                        
-                        <!-- Light Logo text -->    
-                        <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         
+                         <!-- Light Logo text -->    
+                         <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -116,7 +100,7 @@ if (isset($_POST["submit"])) {
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Admin</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" /><?= $user['nama']; ?></a>
                         </li>
                     </ul>
                 </div>
@@ -134,17 +118,21 @@ if (isset($_POST["submit"])) {
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+                        <li> <a class="waves-effect waves-dark" href="index-user.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="user-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="user-list-pinjam.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Pinjam Buku</span></a></li>
+                        <!-- <li> <a class="waves-effect waves-dark" href="admin-peminjaman.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Peminjaman</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="admin-kembali.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Pengembalian</span></a></li> -->
+                        <!-- <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="user.php" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">User</span></a>
+                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Basic Table</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="admin.php" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Admin</span></a>
-                        </li><!--
                         <li> <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank Page</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
                         </li> -->
@@ -179,97 +167,71 @@ if (isset($_POST["submit"])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Buku</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Tabel Buku</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Tambah Buku</li>
+                            <li class="breadcrumb-item active">Table Buku</li>
                         </ol>
                     </div>
                     <!-- <div class="col-md-7 col-4 align-self-center">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
                     </div> -->
+                    <div class="col-md-7 col-4 align-self-center">
+                        <a href="cart.php" class="btn  waves-effect waves-light btn-danger pull-right" style="padding: 15px 20px; float:right;">My cart <i class="mdi mdi-cart"></i></a>
                 </div>
+                </div>
+
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <!-- column -->
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">ADMIN</h4>
-                                    <h6 class="card-subtitle">Perpustakaan Umum</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <!-- <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div> -->
-                                    </div>
-                                </center>
+                                <h4 class="card-title">List Buku</h4>
+                                <!-- <h6 class="card-subtitle">Add class <code>.table</code></h6> -->
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Buku</th>
+                                                <th>Pengarang</th>
+                                                <th>Tahun Terbit</th>
+                                                <th>Penerbit</th>
+                                                <th>Jumlah Buku</th>
+                                                <th>Gambar</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <?php $angka = 1; ?>
+                                        <?php foreach($data_buku as $row): ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $angka?></td>
+                                                <td><?= $row["judul"]?></td>
+                                                <td><?= $row["pengarang"]?></td>
+                                                <td><?= $row["tahun_terbit"]?></td>
+                                                <td><?= $row["penerbit"]?></td>
+                                                <td><?= $row["jumlah_buku"]?></td>
+                                                <td><img src="foto/<?= $row["sampul"]?>" width="100"></td>
+                                                <td>
+                                                    <a class="btn btn-success" href="cart.php?id= <?php echo $row['idbuku']; ?> &action=add"><i class="mdi mdi-cart-plus"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php $angka++;?>
+                                        <?php endforeach;?>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <form method="post" action="" enctype="multipart/form-data" class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Judul Buku</label>
-                                        <div class="col-md-12">
-                                        <input type="hidden" name="idbuku" value="<?= $data_buku[0]['idbuku']?>">
-                                        <input type="hidden" name="sampulLama" value="<?= $data_buku[0]['sampul']?>">
-                                            <input type="text" name="judul" placeholder="Cinta Surga" value="<?=  $data_buku['0']['judul']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Pengarang</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="pengarang" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['pengarang']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Tahun Terbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="tahun" placeholder="2015" value="<?=  $data_buku['0']['tahun_terbit']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Penerbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="penerbit" placeholder="Johnathan Doe" value="<?=  $data_buku['0']['penerbit']?>"class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Jumlah Buku</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="jumlah_buku" placeholder="10"  value="<?=  $data_buku['0']['jumlah_buku']?>"class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Sampul</label>
-                                        <div class="col-md-12">
-                                            <input type="file" name="sampul" value="<?=  $data_buku['0']['sampul']?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-        
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">UPDATE DATA</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
                 </div>
-                <!-- Row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
