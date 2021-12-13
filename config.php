@@ -144,7 +144,7 @@ function hapus($id) {
     global $conn;
     mysqli_query($conn, "DELETE FROM tblbuku WHERE idbuku=$id");
     //hapus user
-    mysqli_query($conn, "DELETE FROM tbluser WHERE iduser=$id");
+
     //mengembalikan nilai apakah ada perubahan atau tidak
     //var_dump(mysqli_affected_rows($koneksi));die;
     return mysqli_affected_rows($conn);
@@ -175,7 +175,7 @@ function tambah_user($data) {
 
 function ubah_user($data) {
     global $conn;
-    //var_dump($data);die;
+    //var_dump($data["iduser"]);die;
     // ambil data tiap elemen
     $id = $data["iduser"];
     $username = $data["username"];
@@ -190,7 +190,7 @@ function ubah_user($data) {
                 password = '$password',
                 nama = '$nama',
                 alamat = '$alamat',
-                notelp = '$notelp',
+                notelp = '$notelp'
               WHERE iduser = '$id'
         ";
     // var_dump($query);die;
@@ -200,6 +200,16 @@ function ubah_user($data) {
     return mysqli_affected_rows($conn);
 }
 
+function hapus_user($id) {
+    global $conn;
+    //hapus user
+    mysqli_query($conn, "DELETE FROM tbluser WHERE iduser=$id");
+    //mengembalikan nilai apakah ada perubahan atau tidak
+    //var_dump(mysqli_affected_rows($koneksi));die;
+    return mysqli_affected_rows($conn);
+}
+
 //==========================FUNCTION TABEL USER============================
+
 
 ?>

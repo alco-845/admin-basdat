@@ -1,25 +1,8 @@
 <?php
+
 require 'config.php';
-$koneksi = mysqli_connect("localhost", "root", "", "perpus");
-
-if (isset($_POST["submit"])) {
-
-    //cek apakah data berhasil ditambahkan
-    if (tambah($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil dimasukkan')
-                document.location.href = 'admin-list-buku.php';
-                </script>
-                ";
-    } else {
-        echo "<script>
-                    alert('Data gagal dimasukkan')
-                    document.location.href = 'admin-list-buku.php';
-              </script>
-            ";
-    }
-
-}
+$data_buku = query("SELECT tbltransaksi.*, tbluser.nama FROM tbltransaksi INNER JOIN tbluser ON tbltransaksi.iduser=tbluser.iduser 
+                    WHERE tbltransaksi.status = 'kembali' ORDER BY tgl_kembali DESC, idtransaksi DESC");
 ?>
 
 
@@ -35,15 +18,17 @@ if (isset($_POST["submit"])) {
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Admin | Buku</title>
+    <title>Admin | Pengembalian</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -51,6 +36,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+    
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -74,15 +60,15 @@ if (isset($_POST["submit"])) {
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            
+                           
                             <!-- Light Logo icon -->
                             <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                        
-                        <!-- Light Logo text -->    
-                        <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         
+                         <!-- Light Logo text -->    
+                         <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -128,17 +114,25 @@ if (isset($_POST["submit"])) {
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+                    <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="admin-peminjaman.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Peminjaman</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="admin-kembali.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Pengembalian</span></a></li>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="user.php" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">User</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="admin.php" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Admin</span></a>
-                        </li><!--
+                        </li>
+                        <!-- <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Basic Table</span></a>
+                        </li>
                         <li> <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank Page</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
                         </li> -->
@@ -173,95 +167,131 @@ if (isset($_POST["submit"])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Buku</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Daftar Pengembalian</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Tambah Buku</li>
+                            <li class="breadcrumb-item active">Daftar Pengembalian</li>
                         </ol>
                     </div>
                     <!-- <div class="col-md-7 col-4 align-self-center">
                         <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
                     </div> -->
+                    <!-- <div class="col-md-7 col-4 align-self-center"> -->
+                        <!-- <a href="admin-tambah-buku.php" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Tambah Buku</a>
+                     -->
+                     <!-- <input type="text" name="cari" id="" class="form-group">
+                     -->
+                     <div class="row align-self-center" style="margin-left: 244px;">
+                     <!-- <div class="form-group row" style="margin-left:256px;"> -->
+                         <form method="get" action="">
+                            <label class="col-md-4" style="padding:8px 0 0 0;">ID Transaksi</label>
+                            <div class="col-md-8 input-group" style="float: right;">
+                                <input type="text" name="cari" class="form-control form-control-line">
+                                <div  class="input-group-btn">
+                                    <button class="btn btn-info" type="submit">Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <!-- </div> -->
+
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
+                <!-- <div class="form-group row" >
+                    <label class="col-md-1.5" style="text-indent:16px; padding:8px 0 0 0;">ID Transaksi</label>
+                    <div class="col-md-3 input-group">
+                        <input type="text" name="pengarang" placeholder="" class="form-control form-control-line">
+                        <div  class="input-group-btn">
+                            <a class="btn btn-info" href="#" role="button">Cari</a>
+                        </div>
+                    </div>
+                </div> -->
+
+
                 <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <!-- column -->
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">ADMIN</h4>
-                                    <h6 class="card-subtitle">Perpustakaan Umum</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <!-- <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div> -->
-                                    </div>
-                                </center>
+                                <h4 class="card-title">List Pengembalian</h4>
+                                <!-- <h6 class="card-subtitle">Add class <code>.table</code></h6> -->
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>ID Transaksi</th>
+                                                <th>Nama</th>
+                                                <th>Tanggal Pinjam</th>
+                                                <th>Tanggal Kembali</th>
+                                                <th>Status</th>
+                                                <th>Telat</th>
+                                                <th>Denda</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <?php if(!isset($_GET['cari']) || $_GET['cari'] == '' ) { ?>
+                                        <?php $angka = 1; ?>
+                                        <?php foreach($data_buku as $row): ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $angka?></td>
+                                                <td><?= $row["idtransaksi"]?></td>
+                                                <td><?= $row["nama"]?></td>
+                                                <td><?= $row["tgl_pinjam"]?></td>
+                                                <td><?= $row["tgl_kembali"]?></td>
+                                                <td><?= $row["status"]?></td>
+                                                <td><?= $row["denda"]?> hari</td>
+                                                <td><?= $row["jumlah_denda"]?></td>
+                                                <!-- <td><img src="foto/<?= $row["sampul"]?>" width="100"></td> -->
+                                                <td>
+                                                <!-- <a class="btn btn-info" href="123">Lihat</a> -->
+                                                <a class="btn btn-info col-12" href="show-item.php?idtransaksi=<?= $row['idtransaksi']?>">Lihat</a>
+                                                <!-- <a href="admin-edit-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-table-edit"></i></a> --> 
+                                                <!-- <a class="btn btn-danger" href="admin-hapus-buku.php?id=<?= $row['idbuku']?>"><i class="mdi mdi-delete"></i></a> -->
+                                                
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php $angka++;?>
+                                        <?php endforeach;?>
+                                        <?php }
+                                        else{ ?>
+                                        <?php $data_cari = query("SELECT tbltransaksi.*, tbluser.nama FROM tbltransaksi INNER JOIN tbluser ON tbltransaksi.iduser=tbluser.iduser 
+                                                                WHERE tbltransaksi.status = 'kembali' AND idtransaksi LIKE '$_GET[cari]%' ORDER BY tgl_kembali DESC"); ?>
+                                        <?php $angka = 1; ?>
+                                        <?php foreach($data_cari as $row): ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $angka?></td>
+                                                <td><?= $row["idtransaksi"]?></td>
+                                                <td><?= $row["nama"]?></td>
+                                                <td><?= $row["tgl_pinjam"]?></td>
+                                                <td><?= $row["tgl_kembali"]?></td>
+                                                <td><?= $row["status"]?></td>
+                                                <td><?= $row["denda"]?> hari</td>
+                                                <td><?= $row["jumlah_denda"]?></td>
+                                                <!-- <td><img src="foto/<?= $row["sampul"]?>" width="100"></td> -->
+                                                <td>
+                                                <a class="btn btn-info" href="show-item.php?idtransaksi=<?= $row['idtransaksi']?>">Lihat</a>
+                                                
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php $angka++;?>
+                                        <?php endforeach;?>
+                                        <?php }?>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <form method="post" action="" enctype="multipart/form-data" class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Judul Buku</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="judul" placeholder="Cinta Surga" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Pengarang</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="pengarang" placeholder="Johnathan Doe" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Tahun Terbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="tahun" placeholder="2015" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Penerbit</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="penerbit" placeholder="Johnathan Doe" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Jumlah Buku</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="jumlah_buku" placeholder="10" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Sampul</label>
-                                        <div class="col-md-12">
-                                            <input type="file" name="sampul" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-        
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button name="submit" class="btn btn-success">TAMBAHKAN</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
                 </div>
-                <!-- Row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

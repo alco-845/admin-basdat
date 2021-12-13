@@ -19,10 +19,23 @@ if (isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['idadmin'] = $row['idadmin'];
+        $_SESSION['namaadmin'] = $row['nama'];
         header("Location: index.php");
-    } else {
-        echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
-    }
+    } 
+    else {
+        $sql2 = "SELECT * FROM tbluser WHERE username='$username' AND password='$password'";
+        $result = mysqli_query($conn, $sql2);
+        if ($result->num_rows > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['iduser'] = $row['iduser'];
+            $_SESSION['namauser'] = $row['nama'];
+            header("Location: index-user.php");
+        }
+            else{
+                echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
+            }
+            
+        }
 }
  
 ?>

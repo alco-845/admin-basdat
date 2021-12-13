@@ -112,11 +112,13 @@ $data_user = query("SELECT * FROM tbluser");
                         <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="admin-list-buku.php" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Buku</span></a>
+                        <li> <a class="waves-effect waves-dark" href="admin-peminjaman.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Peminjaman</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="admin-kembali.php" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Pengembalian</span></a></li>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="user.php" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">User</span></a>
-                        </li><!--
-                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Basic Table</span></a>
                         </li>
+                        <li> <a class="waves-effect waves-dark" href="admin.php" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Admin</span></a>
+                        </li><!--
                         <li> <a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">Icons</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
@@ -203,7 +205,7 @@ $data_user = query("SELECT * FROM tbluser");
                                                 <td><?= $row["nama"]?></td>
                                                 <td><?= $row["alamat"]?></td>
                                                 <td><?= $row["notelp"]?></td>
-                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-table-edit"></i></a>
+                                                <td><a href="user-edit.php?id=<?= $row['iduser']?>"><i class="mdi mdi-account-edit"></i></a>
                                                 <a href="user-delete.php?id=<?= $row['iduser']?>"><i class="mdi mdi-delete"></i></a>
                                                 
                                                 </td>
